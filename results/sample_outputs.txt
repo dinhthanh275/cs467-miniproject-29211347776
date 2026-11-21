@@ -1,0 +1,57 @@
+================================================================================
+CS467 MINI-PROJECT (MP-A14): ONLINE PROGRAMMING TUTORIAL & MOOC RECOMMENDER
+EVALUATION REPORT & REQUIRED TEST CASES OUTPUT
+================================================================================
+Dataset Summary: 40 courses | 14 learners | 210 ratings
+Interaction Matrix Sparsity (Missing Entries): 62.50%
+
+--------------------------------------------------------------------------------
+OFFLINE EVALUATION RESULTS (Hold-out 20% Test Split)
+--------------------------------------------------------------------------------
+                 Model  Precision@5  Evaluated_Users
+   Popularity Baseline       0.1571               14
+     NLP Content-Based       0.3286               14
+Hybrid (NLP + User-CF)       0.1714               14
+
+User-Based Collaborative Filtering Rating Prediction -> RMSE: 0.6491, MAE: 0.4753
+
+--------------------------------------------------------------------------------
+TEST CASE 1 (Goal Query): 'beginner python data visualization and pandas project'
+--------------------------------------------------------------------------------
+item_id                                          course_title        level  score                                                              explanation
+   C006 Beginner Python Data Visualization and Pandas Project     Beginner 0.6195   Matched keywords: [project, pandas, visualization, data visualization]
+   C008   Interactive Data Visualization with Plotly and Dash Intermediate 0.2689 Matched keywords: [visualization, data visualization, python data, data]
+   C007                   Data Analysis with Pandas and NumPy     Beginner 0.2559              Matched keywords: [pandas, beginner python, data, beginner]
+   C002    Python Data Structures and Algorithms Fundamentals     Beginner 0.2521         Matched keywords: [python data, beginner python, data, beginner]
+   C001                  Python Basics for Absolute Beginners     Beginner 0.1664              Matched keywords: [beginner python, beginner, python, data]
+
+--------------------------------------------------------------------------------
+TEST CASE 2 (Next-Course Test for Learner U01)
+Completed High-Rated Courses Sample: Python Basics for Absolute Beginners, Python Data Structures and Algorithms Fundamentals, Object-Oriented Programming in Python, Python Scripting and Task Automation, Python Debugging Testing and Clean Code
+--------------------------------------------------------------------------------
+[A] NLP Content-Based Top-5 Next Courses:
+item_id                                          course_title        level  score                                                              explanation
+   C006 Beginner Python Data Visualization and Pandas Project     Beginner 0.1462              Profile keywords: [beginner, data, python, beginner python]
+   C007                   Data Analysis with Pandas and NumPy     Beginner 0.1354              Profile keywords: [beginner, beginner python, data, python]
+   C008   Interactive Data Visualization with Plotly and Dash Intermediate 0.1112      Profile keywords: [python, data, intermediate, intermediate python]
+   C020              Node.js and Express REST API Development Intermediate 0.1027 Profile keywords: [backend, intermediate, backend api, api intermediate]
+   C027                   CI/CD Pipelines with GitHub Actions Intermediate 0.0923             Profile keywords: [github, intermediate, automation, devops]
+
+[B] Hybrid (NLP + User-CF) Top-5 Next Courses:
+item_id                                          course_title        level  score                                                                               explanation
+   C006 Beginner Python Data Visualization and Pandas Project     Beginner 0.4784                    Hybrid (NLP=0.15, CF_pred=4.54/5) | Keywords: [beginner, data, python]
+   C039       Recommender Systems and Collaborative Filtering Intermediate 0.4763 Hybrid (NLP=0.07, CF_pred=4.87/5) | Keywords: [python, intermediate, intermediate python]
+   C027                   CI/CD Pipelines with GitHub Actions Intermediate 0.4739          Hybrid (NLP=0.09, CF_pred=4.76/5) | Keywords: [github, intermediate, automation]
+   C020              Node.js and Express REST API Development Intermediate 0.4625        Hybrid (NLP=0.10, CF_pred=4.61/5) | Keywords: [backend, intermediate, backend api]
+   C023        Full-Stack Web Development with React and Node     Advanced 0.4618                 Hybrid (NLP=0.03, CF_pred=4.94/5) | Keywords: [postgresql, database, api]
+
+--------------------------------------------------------------------------------
+TEST CASE 3 (Cold-Start Test): New Course 'C040 - Generative AI Agents and RAG Systems with LangChain' (Ratings count = 0)
+Learner Query: 'advanced generative ai agents llm and rag systems with langchain'
+--------------------------------------------------------------------------------
+item_id                                        course_title    level  score                                            explanation
+   C040 Generative AI Agents and RAG Systems with LangChain Advanced 0.7289 Matched keywords: [langchain, rag, llm, generative ai]
+   C036          System Design and Distributed Architecture Advanced 0.1032                  Matched keywords: [advanced, systems]
+   C029        Kubernetes Orchestration for Production Apps Advanced 0.0794                           Matched keywords: [advanced]
+   C031               Spring Boot Microservices Development Advanced 0.0779                           Matched keywords: [advanced]
+   C038                 Time Series Forecasting with Python Advanced 0.0775                           Matched keywords: [advanced]
